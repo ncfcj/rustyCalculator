@@ -85,49 +85,35 @@ impl eframe::App for CalculatorApp {
                 ui.add_space(gap);
             }
 
-            // Atalhos de teclado
+            // Atalhos de teclado (egui 0.31: dígitos/operadores via Event::Text)
             ctx.input(|i| {
                 for event in &i.events {
-                    if let egui::Event::Key {
-                        key,
-                        pressed: true,
-                        modifiers,
-                        ..
-                    } = event
-                    {
-                        match key {
-                            egui::Key::Num0 | egui::Key::Numpad0 => self.calc.input_digit('0'),
-                            egui::Key::Num1 | egui::Key::Numpad1 => self.calc.input_digit('1'),
-                            egui::Key::Num2 | egui::Key::Numpad2 => self.calc.input_digit('2'),
-                            egui::Key::Num3 | egui::Key::Numpad3 => self.calc.input_digit('3'),
-                            egui::Key::Num4 | egui::Key::Numpad4 => self.calc.input_digit('4'),
-                            egui::Key::Num5 | egui::Key::Numpad5 => self.calc.input_digit('5'),
-                            egui::Key::Num6 | egui::Key::Numpad6 => self.calc.input_digit('6'),
-                            egui::Key::Num7 | egui::Key::Numpad7 => self.calc.input_digit('7'),
-                            egui::Key::Num8 | egui::Key::Numpad8 => self.calc.input_digit('8'),
-                            egui::Key::Num9 | egui::Key::Numpad9 => self.calc.input_digit('9'),
-                            egui::Key::Period | egui::Key::NumpadDecimal => {
-                                self.calc.input_decimal()
+                    match event {
+                        egui::Event::Text(text) => {
+                            for ch in text.chars() {
+                                match ch {
+                                    '0'..='9' => self.calc.input_digit(ch),
+                                    '.' | ',' => self.calc.input_decimal(),
+                                    '+' => self.calc.set_operation(Operation::Add),
+                                    '-' => self.calc.set_operation(Operation::Subtract),
+                                    '*' => self.calc.set_operation(Operation::Multiply),
+                                    '/' => self.calc.set_operation(Operation::Divide),
+                                    '=' => self.calc.evaluate(),
+                                    _ => {}
+                                }
                             }
-                            egui::Key::Enter | egui::Key::NumpadEnter => self.calc.evaluate(),
+                        }
+                        egui::Event::Key {
+                            key,
+                            pressed: true,
+                            ..
+                        } => match key {
+                            egui::Key::Enter => self.calc.evaluate(),
                             egui::Key::Backspace => self.calc.backspace(),
                             egui::Key::Escape => self.calc.clear_all(),
-                            egui::Key::Plus | egui::Key::NumpadAdd => {
-                                self.calc.set_operation(Operation::Add)
-                            }
-                            egui::Key::Minus | egui::Key::NumpadSubtract => {
-                                self.calc.set_operation(Operation::Subtract)
-                            }
-                            egui::Key::NumpadMultiply => {
-                                self.calc.set_operation(Operation::Multiply)
-                            }
-                            egui::Key::NumpadDivide | egui::Key::Slash
-                                if !modifiers.shift =>
-                            {
-                                self.calc.set_operation(Operation::Divide)
-                            }
                             _ => {}
-                        }
+                        },
+                        _ => {}
                     }
                 }
             });
