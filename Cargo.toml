@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 description = "Calculadora desktop simples em Rust (egui) para aprender a linguagem"
 license = "MIT"
-repository = "https://github.com/ncosta-bt/rustyCalculator"
+repository = "https://github.com/ncfcj/rustyCalculator"
 
 [dependencies]
 eframe = "0.31"
