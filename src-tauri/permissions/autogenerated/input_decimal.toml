@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-input-decimal"
+description = "Enables the input_decimal command without any pre-configured scope."
+commands.allow = ["input_decimal"]
+
+[[permission]]
+identifier = "deny-input-decimal"
+description = "Denies the input_decimal command without any pre-configured scope."
+commands.deny = ["input_decimal"]

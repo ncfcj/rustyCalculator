@@ -1,0 +1,99 @@
+:root {
+  color-scheme: dark;
+  --bg: #1a1e26;
+  --panel: #1c2028;
+  --display: #1c2028;
+  --btn: #2d3440;
+  --btn-fn: #464e5e;
+  --btn-op: #3478f6;
+  --text: #e6ebf5;
+  --muted: #a0aabe;
+  --radius: 10px;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  user-select: none;
+}
+
+.app {
+  max-width: 340px;
+  margin: 0 auto;
+  padding: 16px 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 100%;
+}
+
+.brand {
+  margin: 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+
+.display {
+  background: var(--display);
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  text-align: right;
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 28px;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  word-break: break-all;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.pad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+button.key {
+  appearance: none;
+  border: 0;
+  border-radius: 8px;
+  height: 52px;
+  font-size: 20px;
+  color: var(--text);
+  background: var(--btn);
+  cursor: pointer;
+  transition: filter 0.12s ease, transform 0.05s ease;
+}
+
+button.key:hover {
+  filter: brightness(1.12);
+}
+
+button.key:active {
+  transform: scale(0.97);
+}
+
+button.key.fn {
+  background: var(--btn-fn);
+}
+
+button.key.op,
+button.key.equals {
+  background: var(--btn-op);
+  color: #fff;
+}
+
+button.key.zero {
+  grid-column: span 2;
+}

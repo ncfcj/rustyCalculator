@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-set-operation"
+description = "Enables the set_operation command without any pre-configured scope."
+commands.allow = ["set_operation"]
+
+[[permission]]
+identifier = "deny-set-operation"
+description = "Denies the set_operation command without any pre-configured scope."
+commands.deny = ["set_operation"]

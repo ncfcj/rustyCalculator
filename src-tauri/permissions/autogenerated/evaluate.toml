@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-evaluate"
+description = "Enables the evaluate command without any pre-configured scope."
+commands.allow = ["evaluate"]
+
+[[permission]]
+identifier = "deny-evaluate"
+description = "Denies the evaluate command without any pre-configured scope."
+commands.deny = ["evaluate"]

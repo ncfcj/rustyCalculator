@@ -22,6 +22,16 @@ impl Operation {
         }
     }
 
+    pub fn from_str_op(s: &str) -> Result<Self, String> {
+        match s {
+            "add" | "+" => Ok(Self::Add),
+            "subtract" | "-" | "−" => Ok(Self::Subtract),
+            "multiply" | "*" | "×" => Ok(Self::Multiply),
+            "divide" | "/" | "÷" => Ok(Self::Divide),
+            other => Err(format!("Operação desconhecida: {other}")),
+        }
+    }
+
     fn apply(self, left: f64, right: f64) -> Result<f64, String> {
         match self {
             Self::Add => Ok(left + right),

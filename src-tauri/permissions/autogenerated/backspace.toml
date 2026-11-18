@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-backspace"
+description = "Enables the backspace command without any pre-configured scope."
+commands.allow = ["backspace"]
+
+[[permission]]
+identifier = "deny-backspace"
+description = "Denies the backspace command without any pre-configured scope."
+commands.deny = ["backspace"]
